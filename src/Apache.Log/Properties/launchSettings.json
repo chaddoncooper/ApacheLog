@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Apache.Log": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\CCOOP\\Desktop\\cnetms.info.access.2017.04.13\\cnetms.info.access.2018.04.13.log\""
+    }
+  }
+}

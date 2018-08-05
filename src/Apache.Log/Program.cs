@@ -8,7 +8,7 @@ namespace Apache.Log
         static void Main(string[] args)
         {
             var fileSystem = new FileSystem();
-            var accessLogParser = new AccessLogParser(fileSystem);
+            var accessLogParser = new AccessLogParser(fileSystem, new AccessRequetPatternConfig());
 
             foreach (var accessRequest in accessLogParser.Parse(args[0]))
             {

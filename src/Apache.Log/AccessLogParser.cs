@@ -10,15 +10,23 @@ namespace Apache.Log
     public class AccessLogParser : IAccessLogParser
     {
         private readonly IFileSystem _fileSystem;
+        private readonly AccessRequetPatternConfig _accessRequetPatternConfig;
 
-        public AccessLogParser(IFileSystem fileSystem)
+        public AccessLogParser(IFileSystem fileSystem, AccessRequetPatternConfig accessRequestPatternConfig)
         {
             _fileSystem = fileSystem;
+            _accessRequetPatternConfig = accessRequestPatternConfig;
+        }
+
+        public IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime date)
+        {
+
+            throw new NotImplementedException();
         }
 
         public bool Parse(string line, out AccessRequest accessRequest)
         {
-            var pattern = @"(.+)\s-\s-\s\[(.+)]\s""(GET|POST|PUT|DELETE)\s(\S+)\s(\S+)""\s(\d+)\s(\d+)";
+            var pattern = _accessRequetPatternConfig.Pattern;
 
             var m = Regex.Match(line, pattern, RegexOptions.IgnoreCase);
 
@@ -26,18 +34,18 @@ namespace Apache.Log
 
             if (m.Success)
             {
-                accessRequest.IPAddress = m.Groups[1].Value;
+                accessRequest.IPAddress = m.Groups[_accessRequetPatternConfig.IPAddressPatternGroup].Value;
 
                 accessRequest.DateTime = DateTime.ParseExact(
-                    m.Groups[2].Value, 
-                    "dd/MMM/yyyy:HH:mm:ss zzz", 
+                    m.Groups[_accessRequetPatternConfig.DateTimePatternGroup].Value,
+                    _accessRequetPatternConfig.DateTimeFormat,
                     CultureInfo.InvariantCulture);
 
-                accessRequest.Method = m.Groups[3].Value;
-                accessRequest.Resource = m.Groups[4].Value;
-                accessRequest.Protocol = m.Groups[5].Value;
-                accessRequest.StatusCode = int.Parse(m.Groups[6].Value);
-                accessRequest.Size = int.Parse(m.Groups[7].Value);
+                accessRequest.Method = m.Groups[_accessRequetPatternConfig.MethodPatternGroup].Value;
+                accessRequest.Resource = m.Groups[_accessRequetPatternConfig.ResourcePatternGroup].Value;
+                accessRequest.Protocol = m.Groups[_accessRequetPatternConfig.ProtocolPatternGroup].Value;
+                accessRequest.StatusCode = int.Parse(m.Groups[_accessRequetPatternConfig.StatusCodePatternGroup].Value);
+                accessRequest.Size = int.Parse(m.Groups[_accessRequetPatternConfig.SizePatternGroup].Value);
             }
 
             return m.Success;

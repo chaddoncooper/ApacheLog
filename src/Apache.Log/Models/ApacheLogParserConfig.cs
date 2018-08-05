@@ -1,4 +1,4 @@
-public class AccessRequetPatternConfig
+public class ApacheLogParserConfig
 {
     public string Pattern { get; set; } = @"(.+)\s-\s-\s\[(.+)]\s""(GET|POST|PUT|DELETE)\s(\S+)\s(\S+)""\s(\d+)\s(\d+)";
     public int IPAddressPatternGroup { get; set; } = 1;

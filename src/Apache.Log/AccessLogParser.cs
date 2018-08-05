@@ -10,9 +10,9 @@ namespace Apache.Log
     public class AccessLogParser : IAccessLogParser
     {
         private readonly IFileSystem _fileSystem;
-        private readonly AccessRequetPatternConfig _accessRequetPatternConfig;
+        private readonly ApacheLogParserConfig _accessRequetPatternConfig;
 
-        public AccessLogParser(IFileSystem fileSystem, AccessRequetPatternConfig accessRequestPatternConfig)
+        public AccessLogParser(IFileSystem fileSystem, ApacheLogParserConfig accessRequestPatternConfig)
         {
             _fileSystem = fileSystem;
             _accessRequetPatternConfig = accessRequestPatternConfig;

@@ -14,7 +14,7 @@ namespace Apache.Log.Test
         public void Should_ReturnAResourceURL_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new AccessLogParser(new MockFileSystem(), new AccessRequetPatternConfig());
+            var accessLogParser = new AccessLogParser(new MockFileSystem(), new ApacheLogParserConfig());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -30,7 +30,7 @@ namespace Apache.Log.Test
         public void Should_ReturnADateTime_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new AccessLogParser(new MockFileSystem(), new AccessRequetPatternConfig());
+            var accessLogParser = new AccessLogParser(new MockFileSystem(), new ApacheLogParserConfig());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -46,7 +46,7 @@ namespace Apache.Log.Test
         public void Should_ReturnAnIPAddress_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new AccessLogParser(new MockFileSystem(), new AccessRequetPatternConfig());
+            var accessLogParser = new AccessLogParser(new MockFileSystem(), new ApacheLogParserConfig());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -62,7 +62,7 @@ namespace Apache.Log.Test
         public void Should_ReturnProtocolMethod_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new AccessLogParser(new MockFileSystem(), new AccessRequetPatternConfig());
+            var accessLogParser = new AccessLogParser(new MockFileSystem(), new ApacheLogParserConfig());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -78,7 +78,7 @@ namespace Apache.Log.Test
         public void Should_ReturnGETMethod_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new AccessLogParser(new MockFileSystem(), new AccessRequetPatternConfig());
+            var accessLogParser = new AccessLogParser(new MockFileSystem(), new ApacheLogParserConfig());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -94,7 +94,7 @@ namespace Apache.Log.Test
         public void Should_ReturnStatusCodeMethod_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new AccessLogParser(new MockFileSystem(), new AccessRequetPatternConfig());
+            var accessLogParser = new AccessLogParser(new MockFileSystem(), new ApacheLogParserConfig());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -110,7 +110,7 @@ namespace Apache.Log.Test
         public void Should_ReturnSizeMethod_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new AccessLogParser(new MockFileSystem(), new AccessRequetPatternConfig());
+            var accessLogParser = new AccessLogParser(new MockFileSystem(), new ApacheLogParserConfig());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -139,7 +139,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogParser = new AccessLogParser(fileSystem, new AccessRequetPatternConfig());
+            var accessLogParser = new AccessLogParser(fileSystem, new ApacheLogParserConfig());
 
             // Act
             var accessRequests = accessLogParser.Parse(@"c:\logs\website.com.access.2018.04.13.log");
@@ -186,7 +186,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogParser = new AccessLogParser(fileSystem, new AccessRequetPatternConfig());
+            var accessLogParser = new AccessLogParser(fileSystem, new ApacheLogParserConfig());
 
             // Act
             var logFiles = accessLogParser.GetLogFilesCreatedOnOrAfter(new DateTime(2018, 4, 14), @"c:\logs\");

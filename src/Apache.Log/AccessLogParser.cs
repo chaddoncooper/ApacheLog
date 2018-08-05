@@ -18,10 +18,30 @@ namespace Apache.Log
             _accessRequetPatternConfig = accessRequestPatternConfig;
         }
 
-        public IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime date)
+        public IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime givenDate, string path)
         {
+            var logFiles = new List<string>();
 
-            throw new NotImplementedException();
+            var pattern = _accessRequetPatternConfig.FilenamePattern;
+
+            foreach (var file in _fileSystem.Directory.EnumerateFiles(path))
+            {
+                var match = Regex.Match(file, pattern, RegexOptions.IgnoreCase);
+
+                if (match.Success)
+                {
+                    var fileCreatedOn = DateTime.ParseExact(
+                    match.Groups[_accessRequetPatternConfig.FilenameDateGroup].Value,
+                    _accessRequetPatternConfig.FilenameDateFormat,
+                    CultureInfo.InvariantCulture
+                    );
+
+                    if (fileCreatedOn >= givenDate)
+                        logFiles.Add(file);
+                }
+            }
+
+            return logFiles;
         }
 
         public bool Parse(string line, out AccessRequest accessRequest)

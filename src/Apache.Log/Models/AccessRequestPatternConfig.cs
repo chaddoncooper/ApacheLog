@@ -9,4 +9,7 @@ public class AccessRequetPatternConfig
     public int ProtocolPatternGroup { get; set; } = 5;
     public int StatusCodePatternGroup { get; set; } = 6;
     public int SizePatternGroup { get; set; } = 7;
+    public string FilenamePattern { get; set; } = @"(\d{4}.\d{2}.\d{2}).log";
+    public int FilenameDateGroup { get; set; } = 1;
+    public string FilenameDateFormat { get; set; } = "yyyy.MM.dd";
 }

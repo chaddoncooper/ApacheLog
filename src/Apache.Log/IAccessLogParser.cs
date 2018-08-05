@@ -8,6 +8,6 @@ namespace Apache.Log
     {
         bool Parse(string line, out AccessRequest accessRequest);
         IEnumerable<AccessRequest> Parse(string filename);
-        IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime date);
+        IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime date, string path);
     }
 }

@@ -66,5 +66,9 @@ namespace Apache.Log.Test
             // Assert
             Assert.True(result);
         }
+
+        // Write tests for RequestedResourceIsWhitelisted
+        // check /index.php
+        // check script.cgi
     }
 }

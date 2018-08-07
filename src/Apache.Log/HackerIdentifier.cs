@@ -17,7 +17,16 @@ namespace Apache.Log
 
         public bool RequestedResourceIsWhitelisted(AccessRequest accessRequest)
         {
-            var requestResource = accessRequest.Resource.Split('/', 3)[1];
+            var requestResource = accessRequest.Resource;
+            try
+            {
+                 requestResource = accessRequest.Resource.Split('/', 3)[1];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                requestResource = accessRequest.Resource;
+            }
+            
             return _whitelist.Any(x => x.StartsWith(requestResource)) ? true : false;
         }
 

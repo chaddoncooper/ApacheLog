@@ -2,7 +2,6 @@ using Apache.Log.Models;
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;
-using System.Linq;
 using Xunit;
 
 namespace Apache.Log.Test

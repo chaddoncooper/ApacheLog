@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27924.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apache.Log", "src\Apache.Log\Apache.Log.csproj", "{2E8E0236-CE57-4390-8241-B2DD48ABCEF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apache.Log", "src\Apache.Log\Apache.Log.csproj", "{2E8E0236-CE57-4390-8241-B2DD48ABCEF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apache.Log.Test", "test\Apache.Log.Test\Apache.Log.Test.csproj", "{02883C77-D261-4F5C-A31A-F31CAB41A252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apache.Log.Test", "test\Apache.Log.Test\Apache.Log.Test.csproj", "{02883C77-D261-4F5C-A31A-F31CAB41A252}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

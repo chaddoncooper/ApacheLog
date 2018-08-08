@@ -10,7 +10,7 @@ namespace Apache.Log.Test
     public class AccessLogFinderTests
     {
         [Fact]
-        public void Should_ReturnAnEnumerationOfFilesCreatedOnOrAfter_Date()
+        public void GetLogFilesCreatedOnOrAfter_ReturnsAnEnumerationOfFiles_CreatedOnOrAfterDate()
         {
             // Arrange
             var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>

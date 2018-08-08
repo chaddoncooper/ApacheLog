@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Apache.Log.AccessLog;
-using Apache.Log.Hacker;
-using Apache.Log.Resource;
+﻿using Apache.Log.AccessLog;
+using Apache.Log.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using System.IO.Abstractions;
 
 namespace Apache.Log.API
 {
@@ -29,14 +23,14 @@ namespace Apache.Log.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IFileSystem, FileSystem>();
             services.AddTransient<IFinder, Finder>();
             services.AddTransient<IParser, Parser>();
-            services.AddTransient<IIdentifier, Identifier>();
+            services.AddTransient<IAnalyser, Analyser>();
 
-            var whitelist = new List<string>();
-            Configuration.GetSection("Whitelist").Bind(whitelist);
+            services.AddDbContext<ApacheLogContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("ApacheLogContext")));
 
-            services.AddSingleton<IWhitelist, new Whitelist(whitelist.AsQueryable() > ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -28,7 +28,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogParser = new Parser(fileSystem, new AccessLogConfig());
+            var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
 
             var whitelistedResources = new List<string>()
             {
@@ -66,7 +66,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogParser = new Parser(fileSystem, new AccessLogConfig());
+            var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
 
             var whitelistedResources = new List<string>().AsQueryable();
             var whitelist = new Whitelist(whitelistedResources);
@@ -107,7 +107,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogParser = new Parser(fileSystem, new AccessLogConfig());
+            var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
 
             var whitelistedResources = new List<string>().AsQueryable();
             var whitelist = new Whitelist(whitelistedResources);

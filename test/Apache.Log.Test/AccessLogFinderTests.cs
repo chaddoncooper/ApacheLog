@@ -44,7 +44,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogFinder = new Finder(fileSystem, new AccessLogConfig());
+            var accessLogFinder = new Finder(fileSystem, AccessLogConfig.GetDefault());
 
             // Act
             var logFiles = accessLogFinder.GetLogFilesCreatedOnOrAfter(new DateTime(2018, 4, 14), @"c:\logs\");

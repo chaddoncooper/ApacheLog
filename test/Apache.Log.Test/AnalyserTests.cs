@@ -1,6 +1,5 @@
 ﻿using Apache.Log.AccessLog;
 using Apache.Log.Configuration;
-using Apache.Log.Hacker;
 using Apache.Log.Resource;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using Xunit;
 
 namespace Apache.Log.Test
 {
-    public class IdentifierTests
+    public class AnalyserTests
     {
         [Fact]
         public void GetAllUnidentifiedResourceRequestsInLogFile_ShouldNotReturnAnything_FromLogFilesWithOnlyWhitelistedResources()
@@ -40,7 +39,7 @@ namespace Apache.Log.Test
             var blacklistedResources = new List<string>().AsQueryable();
             var blacklist = new Blacklist(blacklistedResources);
 
-            var identifier = new Identifier(accessLogParser, whitelist, blacklist, fileSystem);
+            var identifier = new Analyser(accessLogParser, whitelist, blacklist, fileSystem);
 
             // Act
             var distinctUnidentifiedResources = identifier.GetAllUnidentifiedResourceRequestsInLogFile(@"c:\logs\website.com.access.2018.04.13.log");
@@ -48,7 +47,6 @@ namespace Apache.Log.Test
             // Assert
             Assert.Empty(distinctUnidentifiedResources);
         }
-        // GetAllUnidentifiedResourceRequestsInLogFile_ShouldOnlyReturnUnwhitelisted
 
         [Fact]
         public void GetAllUnidentifiedResourceRequestsInLogFile_ShouldNotReturnAnything_FromLogFilesWithOnlyBlacklistedResources()
@@ -80,7 +78,7 @@ namespace Apache.Log.Test
 
             var blacklist = new Blacklist(blacklistedResources);
 
-            var identifier = new Identifier(accessLogParser, whitelist, blacklist, fileSystem);
+            var identifier = new Analyser(accessLogParser, whitelist, blacklist, fileSystem);
 
             // Act
             var distinctUnidentifiedResources = identifier.GetAllUnidentifiedResourceRequestsInLogFile(@"c:\logs\website.com.access.2018.04.13.log");
@@ -115,7 +113,7 @@ namespace Apache.Log.Test
             var blacklistedResources = new List<string>().AsQueryable();
             var blacklist = new Blacklist(blacklistedResources);
 
-            var identifier = new Identifier(accessLogParser, whitelist, blacklist, fileSystem);
+            var identifier = new Analyser(accessLogParser, whitelist, blacklist, fileSystem);
 
             // Act
             var distinctUnidentifiedResources = identifier.GetAllUnidentifiedResourceRequestsInLogFile(@"c:\logs\website.com.access.2018.04.13.log");

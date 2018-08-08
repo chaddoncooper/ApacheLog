@@ -4,21 +4,21 @@ using Apache.Log.Resource;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 
-namespace Apache.Log.Hacker
+namespace Apache.Log.AccessLog
 {
-    public interface IIdentifier
+    public interface IAnalyser
     {
         IEnumerable<string> GetAllUnidentifiedResourceRequestsInLogFile(string path);
     }
 
-    public class Identifier : IIdentifier
+    public class Analyser : IAnalyser
     {
         private readonly IParser _accessLogParser;
         private readonly Whitelist _whitelist;
         private readonly Blacklist _blacklist;
         private readonly IFileSystem _fileSystem;
 
-        public Identifier(IParser accessLogParser, Whitelist whitelist, Blacklist blacklist, IFileSystem fileSystem)
+        public Analyser(IParser accessLogParser, Whitelist whitelist, Blacklist blacklist, IFileSystem fileSystem)
         {
             _accessLogParser = accessLogParser;
             _whitelist = whitelist;

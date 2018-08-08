@@ -1,5 +1,4 @@
-﻿using Apache.Log.AccessLog;
-using Apache.Log.Models;
+﻿using Apache.Log.Models;
 using Apache.Log.Resource;
 using System.Collections.Generic;
 using System.IO.Abstractions;

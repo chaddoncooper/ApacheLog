@@ -3,7 +3,6 @@ using Apache.Log.Models;
 using Apache.Log.Resource;
 using System.Collections.Generic;
 using System.IO.Abstractions;
-using System.Linq;
 
 namespace Apache.Log.Hacker
 {
@@ -25,19 +24,6 @@ namespace Apache.Log.Hacker
             _whitelist = whitelist;
             _blacklist = blacklist;
             _fileSystem = fileSystem;
-        }
-
-        public IEnumerable<string> GetAllUnidentifiedResourceRequestsInLogFileInDirectory(string directoryPath)
-        {
-            var files = _fileSystem.Directory.EnumerateFiles(directoryPath, "*.log");
-
-            var unidentifiedResourceRequests = new List<string>();
-
-            foreach (var file in files)
-            {
-                unidentifiedResourceRequests.AddRange(GetAllUnidentifiedResourceRequestsInLogFile(file));
-            }
-            return unidentifiedResourceRequests.Distinct();
         }
 
         public IEnumerable<string> GetAllUnidentifiedResourceRequestsInLogFile(string filePath)

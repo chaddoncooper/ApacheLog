@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Apache.Log.AccessLog;
+using Apache.Log.Configuration;
+using System;
 using System.IO.Abstractions;
 
 namespace Apache.Log
@@ -8,7 +10,7 @@ namespace Apache.Log
         static void Main(string[] args)
         {
             var fileSystem = new FileSystem();
-            var accessLogParser = new AccessLogParser(fileSystem, new ApacheLogParserConfig());
+            var accessLogParser = new Parser(fileSystem, new AccessLogConfig());
 
             foreach (var accessRequest in accessLogParser.Parse(args[0]))
             {

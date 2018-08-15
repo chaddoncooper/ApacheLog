@@ -16,7 +16,7 @@ namespace Apache.Log.Test
         }
 
         [Fact]
-        public void RequestedResourceIsBlacklisted_ReturnsTrue_IfRequesedResourceIsNotBlacklisted()
+        public void RequestedResourceIsBlacklisted_ReturnsFalse_IfRequesedResourceIsNotBlacklisted()
         {
             using (var context = _apacheLogContextFactory.NewTestContext())
             {

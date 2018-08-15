@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/BlacklistedResources",
+      "launchUrl": "api/UnidentifiedResourceRequests",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

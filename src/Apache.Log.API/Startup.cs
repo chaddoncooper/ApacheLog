@@ -27,6 +27,7 @@ namespace Apache.Log.API
             services.AddTransient<IFinder, Finder>();
             services.AddTransient<IParser, Parser>();
             services.AddTransient<IAnalyser, Analyser>();
+            services.AddTransient<IAccessLogService, AccessLogService>();
 
             services.AddDbContext<ApacheLogContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ApacheLogContext")));

@@ -1,6 +1,5 @@
 ﻿using Apache.Log.Data;
 using Apache.Log.Models;
-using System;
 using System.Linq;
 
 namespace Apache.Log.Resource
@@ -10,7 +9,7 @@ namespace Apache.Log.Resource
         bool RequestedResourceIsBlacklisted(AccessRequest accessRequest);
     }
 
-    public class Blacklist
+    public class Blacklist : IBlacklist
     {
         private readonly ApacheLogContext _apacheLogContext;
 

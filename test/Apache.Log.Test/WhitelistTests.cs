@@ -1,7 +1,7 @@
 ﻿using Apache.Log.Data.Entities;
 using Apache.Log.Models;
 using Apache.Log.Resource;
-using Apache.Log.Test.TestFactories;
+using Apache.Log.Test.Factories;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;

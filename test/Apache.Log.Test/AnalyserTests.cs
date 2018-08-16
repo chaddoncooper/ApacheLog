@@ -2,11 +2,10 @@
 using Apache.Log.Configuration;
 using Apache.Log.Data.Entities;
 using Apache.Log.Resource;
-using Apache.Log.Test.TestFactories;
+using Apache.Log.Test.Factories;
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;
-using System.Linq;
 using Xunit;
 
 namespace Apache.Log.Test

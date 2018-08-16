@@ -1,7 +1,10 @@
-﻿namespace Apache.Log.Data.Entities
+﻿using Core.Repository;
+
+namespace Apache.Log.Data.Entities
 {
-    public class BlacklistedResource : Entity
+    public class BlacklistedResource : IEntityBase
     {
+        public int Id { get; set; }
         public string FullPath { get; set; }
     }
 }

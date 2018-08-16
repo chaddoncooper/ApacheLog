@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace Apache.Log.Test.TestFactories
+namespace Apache.Log.Test.Factories
 {
     internal interface IApacheLogContextFactory
     {

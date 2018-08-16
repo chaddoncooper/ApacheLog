@@ -1,5 +1,6 @@
 ﻿using Apache.Log.Data.Configurations;
 using Apache.Log.Data.Entities;
+using Apache.Log.Data.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace Apache.Log.Data
@@ -16,6 +17,7 @@ namespace Apache.Log.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             Configurations(modelBuilder);
+            Seeds(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -23,6 +25,11 @@ namespace Apache.Log.Data
         {
             new BlacklistedResourceConfiguration(modelBuilder.Entity<BlacklistedResource>());
             new WhitelistedResourceConfiguration(modelBuilder.Entity<WhitelistedResource>());
+        }
+
+        private void Seeds(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BlacklistedResource>().HasData(BlacklistedResourceSeed.Data());
         }
     }
 }

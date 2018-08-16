@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>cded81be-41e8-42d9-b28f-5edac026a454</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Apache.Log.Repository\Apache.Log.Repository.csproj" />
     <ProjectReference Include="..\Apache.Log\Apache.Log.csproj" />
   </ItemGroup>
 

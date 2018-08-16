@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Apache.Log.Data;
 using Apache.Log.Data.Entities;
+using Apache.Log.Repository;
 
 namespace Apache.Log.API.Controllers
 {
@@ -14,18 +12,18 @@ namespace Apache.Log.API.Controllers
     [ApiController]
     public class BlacklistedResourcesController : ControllerBase
     {
-        private readonly ApacheLogContext _context;
+        private readonly IBlacklistedResourceRepository _blacklistedResourceRepository;
 
-        public BlacklistedResourcesController(ApacheLogContext context)
+        public BlacklistedResourcesController(IBlacklistedResourceRepository blacklistedResourceRepository)
         {
-            _context = context;
+            _blacklistedResourceRepository = blacklistedResourceRepository;
         }
 
         // GET: api/BlacklistedResources
         [HttpGet]
         public IEnumerable<BlacklistedResource> GetBlacklistedResources()
         {
-            return _context.BlacklistedResources;
+            return _blacklistedResourceRepository.GetAll();
         }
 
         // GET: api/BlacklistedResources/5
@@ -37,7 +35,7 @@ namespace Apache.Log.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var blacklistedResource = await _context.BlacklistedResources.FindAsync(id);
+            var blacklistedResource = await _blacklistedResourceRepository.GetSingleAsync(id);
 
             if (blacklistedResource == null)
             {
@@ -61,11 +59,11 @@ namespace Apache.Log.API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(blacklistedResource).State = EntityState.Modified;
+            _blacklistedResourceRepository.Edit(blacklistedResource);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _blacklistedResourceRepository.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -91,8 +89,8 @@ namespace Apache.Log.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.BlacklistedResources.Add(blacklistedResource);
-            await _context.SaveChangesAsync();
+            await _blacklistedResourceRepository.AddAsync(blacklistedResource);
+            await _blacklistedResourceRepository.SaveChangesAsync();
 
             return CreatedAtAction("GetBlacklistedResource", new { id = blacklistedResource.Id }, blacklistedResource);
         }
@@ -106,21 +104,21 @@ namespace Apache.Log.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var blacklistedResource = await _context.BlacklistedResources.FindAsync(id);
+            var blacklistedResource = await _blacklistedResourceRepository.GetSingleAsync(id);
             if (blacklistedResource == null)
             {
                 return NotFound();
             }
 
-            _context.BlacklistedResources.Remove(blacklistedResource);
-            await _context.SaveChangesAsync();
+            _blacklistedResourceRepository.Delete(blacklistedResource);
+            await _blacklistedResourceRepository.SaveChangesAsync();
 
             return Ok(blacklistedResource);
         }
 
         private bool BlacklistedResourceExists(int id)
         {
-            return _context.BlacklistedResources.Any(e => e.Id == id);
+            return _blacklistedResourceRepository.FindBy(x => x.Id == id).Any();
         }
     }
 }

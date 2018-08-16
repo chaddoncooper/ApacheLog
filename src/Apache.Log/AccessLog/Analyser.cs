@@ -13,11 +13,11 @@ namespace Apache.Log.AccessLog
     public class Analyser : IAnalyser
     {
         private readonly IParser _accessLogParser;
-        private readonly Whitelist _whitelist;
-        private readonly Blacklist _blacklist;
+        private readonly IWhitelist _whitelist;
+        private readonly IBlacklist _blacklist;
         private readonly IFileSystem _fileSystem;
 
-        public Analyser(IParser accessLogParser, Whitelist whitelist, Blacklist blacklist, IFileSystem fileSystem)
+        public Analyser(IParser accessLogParser, IWhitelist whitelist, IBlacklist blacklist, IFileSystem fileSystem)
         {
             _accessLogParser = accessLogParser;
             _whitelist = whitelist;

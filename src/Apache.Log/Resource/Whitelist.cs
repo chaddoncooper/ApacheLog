@@ -33,5 +33,7 @@ namespace Apache.Log.Resource
 
             return _apacheLogContext.WhitelistedResources.Any(x => x.BasePath.Contains(requestResource)) ? true : false;
         }
+
+
     }
 }

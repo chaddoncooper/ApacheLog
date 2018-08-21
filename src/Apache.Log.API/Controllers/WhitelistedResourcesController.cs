@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Apache.Log.Data;
 using Apache.Log.Data.Entities;
+using Apache.Log.Repository;
 
 namespace Apache.Log.API.Controllers
 {
@@ -12,18 +12,18 @@ namespace Apache.Log.API.Controllers
     [ApiController]
     public class WhitelistedResourcesController : ControllerBase
     {
-        private readonly ApacheLogContext _context;
+        private readonly IWhitelistedResourceRepository _whitelistedResourceRepository;
 
-        public WhitelistedResourcesController(ApacheLogContext context)
+        public WhitelistedResourcesController(IWhitelistedResourceRepository whitelistedResourceRepository)
         {
-            _context = context;
+            _whitelistedResourceRepository = whitelistedResourceRepository;
         }
 
         // GET: api/WhitelistedResources
         [HttpGet]
         public IEnumerable<WhitelistedResource> GetWhitelistedResources()
         {
-            return _context.WhitelistedResources;
+            return _whitelistedResourceRepository.GetAll();
         }
 
         // GET: api/WhitelistedResources/5
@@ -35,7 +35,7 @@ namespace Apache.Log.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var whitelistedResource = await _context.WhitelistedResources.FindAsync(id);
+            var whitelistedResource = await _whitelistedResourceRepository.GetSingleAsync(id);
 
             if (whitelistedResource == null)
             {
@@ -59,11 +59,11 @@ namespace Apache.Log.API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(whitelistedResource).State = EntityState.Modified;
+            _whitelistedResourceRepository.Edit(whitelistedResource);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _whitelistedResourceRepository.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -89,8 +89,8 @@ namespace Apache.Log.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.WhitelistedResources.Add(whitelistedResource);
-            await _context.SaveChangesAsync();
+            await _whitelistedResourceRepository.AddAsync(whitelistedResource);
+            await _whitelistedResourceRepository.SaveChangesAsync();
 
             return CreatedAtAction("GetWhitelistedResource", new { id = whitelistedResource.Id }, whitelistedResource);
         }
@@ -104,21 +104,21 @@ namespace Apache.Log.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var whitelistedResource = await _context.WhitelistedResources.FindAsync(id);
+            var whitelistedResource = await _whitelistedResourceRepository.GetSingleAsync(id);
             if (whitelistedResource == null)
             {
                 return NotFound();
             }
 
-            _context.WhitelistedResources.Remove(whitelistedResource);
-            await _context.SaveChangesAsync();
+            _whitelistedResourceRepository.Delete(whitelistedResource);
+            await _whitelistedResourceRepository.SaveChangesAsync();
 
             return Ok(whitelistedResource);
         }
 
         private bool WhitelistedResourceExists(int id)
         {
-            return _context.WhitelistedResources.Any(e => e.Id == id);
+            return _whitelistedResourceRepository.FindBy(x => x.Id == id).Any();
         }
     }
 }

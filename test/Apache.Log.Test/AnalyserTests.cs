@@ -1,16 +1,24 @@
 ﻿using Apache.Log.AccessLog;
 using Apache.Log.Configuration;
+using Apache.Log.Data.Entities;
 using Apache.Log.Resource;
+using Apache.Log.Test.Factories;
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;
-using System.Linq;
 using Xunit;
 
 namespace Apache.Log.Test
 {
     public class AnalyserTests
     {
+        private readonly IApacheLogContextFactory _apacheLogContextFactory;
+
+        public AnalyserTests()
+        {
+            _apacheLogContextFactory = new ApacheLogContextFactory();
+        }
+
         [Fact]
         public void GetAllUnidentifiedResourceRequestsInLogFile_ShouldNotReturnAnything_FromLogFilesWithOnlyWhitelistedResources()
         {
@@ -29,23 +37,27 @@ namespace Apache.Log.Test
 
             var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
 
-            var whitelistedResources = new List<string>()
+            using (var context = _apacheLogContextFactory.NewTestContext())
             {
-                @"okBasePath",
-                @"AnotherOKBasePath",
-            }.AsQueryable();
-            var whitelist = new Whitelist(whitelistedResources);
+                context.WhitelistedResources.AddRange(
+                    new WhitelistedResource[2]
+                    {
+                        new WhitelistedResource() { BasePath = "okBasePath" },
+                        new WhitelistedResource() { BasePath = "AnotherOKBasePath" }
+                    });
+                context.SaveChanges();
 
-            var blacklistedResources = new List<string>().AsQueryable();
-            var blacklist = new Blacklist(blacklistedResources);
+                var whitelist = new Whitelist(context);
+                var blacklist = new Blacklist(context);
 
-            var identifier = new Analyser(accessLogParser, whitelist, blacklist, fileSystem);
+                var identifier = new Analyser(accessLogParser, whitelist, blacklist, fileSystem);
 
-            // Act
-            var distinctUnidentifiedResources = identifier.GetAllUnidentifiedResourceRequestsInLogFile(@"c:\logs\website.com.access.2018.04.13.log");
+                // Act
+                var distinctUnidentifiedResources = identifier.GetAllUnidentifiedResourceRequestsInLogFile(@"c:\logs\website.com.access.2018.04.13.log");
 
-            // Assert
-            Assert.Empty(distinctUnidentifiedResources);
+                // Assert
+                Assert.Empty(distinctUnidentifiedResources);
+            } 
         }
 
         [Fact]
@@ -66,25 +78,27 @@ namespace Apache.Log.Test
 
             var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
 
-            var whitelistedResources = new List<string>().AsQueryable();
-            var whitelist = new Whitelist(whitelistedResources);
-
-            var blacklistedResources = new List<string>()
+            using (var context = _apacheLogContextFactory.NewTestContext())
             {
-                @"/pmamy/index.php",
-                @"/pmamy2/index.php",
-                @"/mysql/index.php"
-            }.AsQueryable();
+                context.AddRange(
+                    new BlacklistedResource[3] {
+                        new BlacklistedResource() { FullPath = @"/pmamy/index.php" },
+                        new BlacklistedResource() { FullPath = @"/pmamy2/index.php" },
+                        new BlacklistedResource() { FullPath = @"/mysql/index.php" }
+                    });
+                context.SaveChanges();
 
-            var blacklist = new Blacklist(blacklistedResources);
+                var whitelist = new Whitelist(context);
+                var blacklist = new Blacklist(context);
 
-            var identifier = new Analyser(accessLogParser, whitelist, blacklist, fileSystem);
+                var identifier = new Analyser(accessLogParser, whitelist, blacklist, fileSystem);
 
-            // Act
-            var distinctUnidentifiedResources = identifier.GetAllUnidentifiedResourceRequestsInLogFile(@"c:\logs\website.com.access.2018.04.13.log");
+                // Act
+                var distinctUnidentifiedResources = identifier.GetAllUnidentifiedResourceRequestsInLogFile(@"c:\logs\website.com.access.2018.04.13.log");
 
-            // Assert
-            Assert.Empty(distinctUnidentifiedResources);
+                // Assert
+                Assert.Empty(distinctUnidentifiedResources);
+            }                
         }
 
         [Fact]
@@ -107,23 +121,24 @@ namespace Apache.Log.Test
 
             var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
 
-            var whitelistedResources = new List<string>().AsQueryable();
-            var whitelist = new Whitelist(whitelistedResources);
+            // Run the test against one instance of the context
+            using (var context = _apacheLogContextFactory.NewTestContext())
+            {
+                var whitelist = new Whitelist(context);
+                var blacklist = new Blacklist(context);
 
-            var blacklistedResources = new List<string>().AsQueryable();
-            var blacklist = new Blacklist(blacklistedResources);
+                var identifier = new Analyser(accessLogParser, whitelist, blacklist, fileSystem);
 
-            var identifier = new Analyser(accessLogParser, whitelist, blacklist, fileSystem);
+                // Act
+                var distinctUnidentifiedResources = identifier.GetAllUnidentifiedResourceRequestsInLogFile(@"c:\logs\website.com.access.2018.04.13.log");
 
-            // Act
-            var distinctUnidentifiedResources = identifier.GetAllUnidentifiedResourceRequestsInLogFile(@"c:\logs\website.com.access.2018.04.13.log");
-
-            // Assert
-            Assert.Collection(distinctUnidentifiedResources,
-                resource => Assert.Contains("/pmamy/index.php", resource),
-                resource => Assert.Contains("/pmamy2/index.php", resource),
-                resource => Assert.Contains("/mysql/index.php", resource), 
-                resource => Assert.Contains("/admin/index.php", resource));
+                // Assert
+                Assert.Collection(distinctUnidentifiedResources,
+                    resource => Assert.Contains("/pmamy/index.php", resource),
+                    resource => Assert.Contains("/pmamy2/index.php", resource),
+                    resource => Assert.Contains("/mysql/index.php", resource),
+                    resource => Assert.Contains("/admin/index.php", resource));
+            }
         }
     }
 }

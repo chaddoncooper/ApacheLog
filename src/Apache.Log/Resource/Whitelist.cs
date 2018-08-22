@@ -1,4 +1,5 @@
-﻿using Apache.Log.Models;
+﻿using Apache.Log.Data;
+using Apache.Log.Models;
 using System;
 using System.Linq;
 
@@ -11,11 +12,11 @@ namespace Apache.Log.Resource
 
     public class Whitelist : IWhitelist
     {
-        private readonly IQueryable<string> _whitelistedResources;
+        private readonly ApacheLogContext _apacheLogContext;
 
-        public Whitelist(IQueryable<string> whitelistedResources)
-        {
-            _whitelistedResources = whitelistedResources;
+        public Whitelist(ApacheLogContext apacheLogContext)
+        {            
+            _apacheLogContext = apacheLogContext;
         }
 
         public bool RequestedResourceIsWhitelisted(AccessRequest accessRequest)
@@ -30,7 +31,9 @@ namespace Apache.Log.Resource
                 requestResource = accessRequest.Resource;
             }
 
-            return _whitelistedResources.Any(x => x.StartsWith(requestResource)) ? true : false;
+            return _apacheLogContext.WhitelistedResources.Any(x => x.BasePath.Contains(requestResource)) ? true : false;
         }
+
+
     }
 }

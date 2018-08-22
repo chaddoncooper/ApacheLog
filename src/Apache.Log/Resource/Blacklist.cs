@@ -1,5 +1,5 @@
-﻿using Apache.Log.Models;
-using System;
+﻿using Apache.Log.Data;
+using Apache.Log.Models;
 using System.Linq;
 
 namespace Apache.Log.Resource
@@ -9,18 +9,18 @@ namespace Apache.Log.Resource
         bool RequestedResourceIsBlacklisted(AccessRequest accessRequest);
     }
 
-    public class Blacklist
+    public class Blacklist : IBlacklist
     {
-        private readonly IQueryable<string> _blacklistedResources;
+        private readonly ApacheLogContext _apacheLogContext;
 
-        public Blacklist(IQueryable<string> blacklistedResources)
+        public Blacklist(ApacheLogContext apacheLogContext)
         {
-            _blacklistedResources = blacklistedResources;
+            _apacheLogContext = apacheLogContext;
         }
 
         public bool RequestedResourceIsBlacklisted(AccessRequest accessRequest)
         {
-            return _blacklistedResources.Contains(accessRequest.Resource);
+            return _apacheLogContext.BlacklistedResources.Where(x => x.FullPath == accessRequest.Resource).Any();
         }
     }
 }

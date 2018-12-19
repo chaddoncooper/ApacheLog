@@ -1,5 +1,7 @@
 # ApacheLog
 
+[![Build Status](https://ci.cnetms.info/buildStatus/icon?job=ApacheLog)](#)
+
 Reads data from Apache log files for the purpose of creating IP address blacklists and whitelists.
 
 ## Developer Instructions

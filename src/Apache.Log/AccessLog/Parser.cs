@@ -17,9 +17,9 @@ namespace Apache.Log.AccessLog
     public class Parser : IParser
     {
         private readonly IFileSystem _fileSystem;
-        private readonly AccessLogConfig _accessLogConfig;
+        private readonly AccessLogParserConfig _accessLogConfig;
 
-        public Parser(IFileSystem fileSystem, AccessLogConfig accessLogConfig)
+        public Parser(IFileSystem fileSystem, AccessLogParserConfig accessLogConfig)
         {
             _fileSystem = fileSystem;
             _accessLogConfig = accessLogConfig;

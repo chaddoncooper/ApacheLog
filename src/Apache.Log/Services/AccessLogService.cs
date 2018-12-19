@@ -8,30 +8,34 @@ namespace Apache.Log
 {
     public interface IAccessLogService
     {
-        IEnumerable<string> GetAllUnidentifiedResourceRequestsSince(DateTime startDateTime, string path);
+        IEnumerable<string> GetAllUnidentifiedResourceRequestsSince(VirtualHost virtualHost, DateTime startDateTime, string path);
     }
 
     public class AccessLogService : IAccessLogService
     {
         private readonly ApacheLogContext _context;
-        private readonly AccessLogConfig _accessLogConfig;
         private readonly IFinder _accessLogFinder;
         private readonly IAnalyser _accessLogAnalyser;
 
-        public AccessLogService(ApacheLogContext context, AccessLogConfig accessLogConfig, IFinder accessLogFinder, IAnalyser accessLogAnalyser)
+        public AccessLogService(ApacheLogContext context, IFinder accessLogFinder, IAnalyser accessLogAnalyser)
         {
             _context = context;
-            _accessLogConfig = accessLogConfig;
             _accessLogFinder = accessLogFinder;
             _accessLogAnalyser = accessLogAnalyser;
         }
 
-        public IEnumerable<string> GetAllUnidentifiedResourceRequestsSince(DateTime startDateTime, string path)
+        public IEnumerable<string> GetAllUnidentifiedResourceRequestsSince(VirtualHost virtualHost, DateTime startDateTime, string path)
         {
-            var files = _accessLogFinder.GetLogFilesCreatedOnOrAfter(startDateTime, path, _accessLogConfig);
+            var logFilePaths = new List<string>();
+                
+            foreach (var accessLog in virtualHost.AccessLogFiles)
+            {
+                logFilePaths.AddRange(_accessLogFinder.GetLogFilesCreatedOnOrAfter(startDateTime, path, accessLog.AccessLogFilenameConfig));
+            }
+                
             var unidentifiedResourceRequests = new List<string>();
 
-            foreach (var file in files)
+            foreach (var file in logFilePaths)
             {
                 _accessLogAnalyser.GetAllUnidentifiedResourceRequestsInLogFile(file);
             }

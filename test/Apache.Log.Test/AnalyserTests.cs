@@ -35,7 +35,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(fileSystem, AccessLogParserConfig.GetDefault());
 
             using (var context = _apacheLogContextFactory.NewTestContext())
             {
@@ -76,7 +76,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(fileSystem, AccessLogParserConfig.GetDefault());
 
             using (var context = _apacheLogContextFactory.NewTestContext())
             {
@@ -119,7 +119,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(fileSystem, AccessLogParserConfig.GetDefault());
 
             // Run the test against one instance of the context
             using (var context = _apacheLogContextFactory.NewTestContext())

@@ -46,10 +46,8 @@ namespace Apache.Log.Test
 
             var accessLogFinder = new Finder(fileSystem);
 
-            var accessLogConfig = AccessLogConfig.GetDefault();
-
             // Act
-            var logFiles = accessLogFinder.GetLogFilesCreatedOnOrAfter(new DateTime(2018, 4, 14), @"c:\logs\", accessLogConfig);
+            var logFiles = accessLogFinder.GetLogFilesCreatedOnOrAfter(new DateTime(2018, 4, 14), @"c:\logs\", AccessLogFilenameConfig.GetDefault());
 
             // Assert
             Assert.Collection(logFiles, item => Assert.Contains(@"c:\logs\website.com.access.2018.04.14.log", item),

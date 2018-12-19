@@ -50,9 +50,9 @@ namespace Apache.Log.API
 
             services.AddDbContext<ApacheLogContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ApacheLogContext")));
-            var accessLogConfig = new AccessLogConfig();
-            Configuration.GetSection("Sites:AccessLogConfig").Bind(accessLogConfig);
-            services.AddSingleton(accessLogConfig);
+            var accessLogParserConfig = new AccessLogParserConfig();
+            Configuration.GetSection("Sites:AccessLogParserConfig").Bind(accessLogParserConfig);
+            services.AddSingleton(accessLogParserConfig);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

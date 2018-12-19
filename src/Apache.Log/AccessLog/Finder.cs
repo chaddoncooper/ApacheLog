@@ -9,7 +9,7 @@ namespace Apache.Log.AccessLog
 {
     public interface IFinder
     {
-        IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime givenDate, string path, AccessLogConfig accessLogConfig);
+        IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime givenDate, string path, AccessLogFilenameConfig accessLogConfig);
     }
 
     public class Finder : IFinder
@@ -21,7 +21,7 @@ namespace Apache.Log.AccessLog
             _fileSystem = fileSystem;
         }
 
-        public IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime givenDate, string path, AccessLogConfig accessLogConfig)
+        public IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime givenDate, string path, AccessLogFilenameConfig accessLogConfig)
         {
             var logFiles = new List<string>();
 

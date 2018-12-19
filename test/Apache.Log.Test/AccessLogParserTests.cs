@@ -15,7 +15,7 @@ namespace Apache.Log.Test
         public void Should_ReturnAResourceURL_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new Parser(new MockFileSystem(), AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(new MockFileSystem(), AccessLogParserConfig.GetDefault());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -31,7 +31,7 @@ namespace Apache.Log.Test
         public void Should_ReturnADateTime_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new Parser(new MockFileSystem(), AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(new MockFileSystem(), AccessLogParserConfig.GetDefault());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -47,7 +47,7 @@ namespace Apache.Log.Test
         public void Should_ReturnAnIPAddress_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new Parser(new MockFileSystem(), AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(new MockFileSystem(), AccessLogParserConfig.GetDefault());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -63,7 +63,7 @@ namespace Apache.Log.Test
         public void Should_ReturnProtocolMethod_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new Parser(new MockFileSystem(), AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(new MockFileSystem(), AccessLogParserConfig.GetDefault());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -79,7 +79,7 @@ namespace Apache.Log.Test
         public void Should_ReturnGETMethod_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new Parser(new MockFileSystem(), AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(new MockFileSystem(), AccessLogParserConfig.GetDefault());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -95,7 +95,7 @@ namespace Apache.Log.Test
         public void Should_ReturnStatusCodeMethod_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new Parser(new MockFileSystem(), AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(new MockFileSystem(), AccessLogParserConfig.GetDefault());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -111,7 +111,7 @@ namespace Apache.Log.Test
         public void Should_ReturnSizeMethod_FromLineOfLog()
         {
             // Arrange
-            var accessLogParser = new Parser(new MockFileSystem(), AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(new MockFileSystem(), AccessLogParserConfig.GetDefault());
             var testLine = @"140.143.233.233 - - [14/May/2018:03:04:31 +0100] ""GET /admin/mysql2/index.php HTTP/1.1"" 301 251";
             var accessRequest = new AccessRequest();
 
@@ -140,7 +140,7 @@ namespace Apache.Log.Test
                 }
             });
 
-            var accessLogParser = new Parser(fileSystem, AccessLogConfig.GetDefault());
+            var accessLogParser = new Parser(fileSystem, AccessLogParserConfig.GetDefault());
 
             // Act
             var accessRequests = accessLogParser.Parse(@"c:\logs\website.com.access.2018.04.13.log");

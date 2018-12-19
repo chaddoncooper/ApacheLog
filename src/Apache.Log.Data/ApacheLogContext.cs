@@ -13,6 +13,7 @@ namespace Apache.Log.Data
 
         public virtual DbSet<WhitelistedResource> WhitelistedResources { get; set; }
         public virtual DbSet<BlacklistedResource> BlacklistedResources { get; set; }
+        public virtual DbSet<VirtualHost> VirutalHosts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

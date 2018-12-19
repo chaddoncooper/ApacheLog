@@ -3,14 +3,16 @@ using Apache.Log.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Apache.Log.Data.Migrations
 {
     [DbContext(typeof(ApacheLogContext))]
-    partial class ApacheLogContextModelSnapshot : ModelSnapshot
+    [Migration("20181219155438_AddVirtualHost")]
+    partial class AddVirtualHost
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

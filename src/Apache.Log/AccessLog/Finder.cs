@@ -9,35 +9,31 @@ namespace Apache.Log.AccessLog
 {
     public interface IFinder
     {
-        IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime givenDate, string path);
+        IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime givenDate, string path, AccessLogConfig accessLogConfig);
     }
 
     public class Finder : IFinder
     {
         private readonly IFileSystem _fileSystem;
-        private readonly AccessLogConfig _accessLogConfig;
 
-        public Finder(IFileSystem fileSystem, AccessLogConfig accessLogConfig)
+        public Finder(IFileSystem fileSystem)
         {
             _fileSystem = fileSystem;
-            _accessLogConfig = accessLogConfig;
         }
 
-        public IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime givenDate, string path)
+        public IEnumerable<string> GetLogFilesCreatedOnOrAfter(DateTime givenDate, string path, AccessLogConfig accessLogConfig)
         {
             var logFiles = new List<string>();
 
-            var pattern = _accessLogConfig.FilenamePattern;
-
             foreach (var file in _fileSystem.Directory.EnumerateFiles(path))
             {
-                var match = Regex.Match(file, pattern, RegexOptions.IgnoreCase);
+                var match = Regex.Match(file, accessLogConfig.FilenamePattern, RegexOptions.IgnoreCase);
 
                 if (match.Success)
                 {
                     var fileCreatedOn = DateTime.ParseExact(
-                    match.Groups[_accessLogConfig.FilenameDateGroup].Value,
-                    _accessLogConfig.FilenameDateFormat,
+                    match.Groups[accessLogConfig.FilenameDateGroup].Value,
+                    accessLogConfig.FilenameDateFormat,
                     CultureInfo.InvariantCulture
                     );
 

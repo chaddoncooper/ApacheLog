@@ -119,6 +119,37 @@
           }
         }
       }
+    },
+    "blacklist": {
+      "projectType": "library",
+      "root": "libs/blacklist",
+      "sourceRoot": "libs/blacklist/src",
+      "prefix": "apache",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/blacklist/tsconfig.lib.json",
+              "libs/blacklist/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/blacklist/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/blacklist/jest.config.js",
+            "tsConfig": "libs/blacklist/tsconfig.spec.json",
+            "setupFile": "libs/blacklist/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

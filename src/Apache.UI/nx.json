@@ -13,6 +13,9 @@
     },
     "management": {
       "tags": ["management"]
+    },
+    "blacklist": {
+      "tags": []
     }
   }
 }

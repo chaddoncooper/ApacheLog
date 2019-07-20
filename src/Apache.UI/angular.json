@@ -3,35 +3,38 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "apache": {
+    "management": {
       "projectType": "application",
       "schematics": {
         "@nrwl/workspace:component": {
           "style": "scss"
         }
       },
-      "root": "apps/apache",
-      "sourceRoot": "apps/apache/src",
+      "root": "apps/management",
+      "sourceRoot": "apps/management/src",
       "prefix": "apache",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/apache",
-            "index": "apps/apache/src/index.html",
-            "main": "apps/apache/src/main.ts",
-            "polyfills": "apps/apache/src/polyfills.ts",
-            "tsConfig": "apps/apache/tsconfig.app.json",
-            "assets": ["apps/apache/src/favicon.ico", "apps/apache/src/assets"],
-            "styles": ["apps/apache/src/styles.scss"],
+            "outputPath": "dist/apps/management",
+            "index": "apps/management/src/index.html",
+            "main": "apps/management/src/main.ts",
+            "polyfills": "apps/management/src/polyfills.ts",
+            "tsConfig": "apps/management/tsconfig.app.json",
+            "assets": [
+              "apps/management/src/favicon.ico",
+              "apps/management/src/assets"
+            ],
+            "styles": ["apps/management/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/apache/src/environments/environment.ts",
-                  "with": "apps/apache/src/environments/environment.prod.ts"
+                  "replace": "apps/management/src/environments/environment.ts",
+                  "with": "apps/management/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -56,63 +59,63 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "apache:build"
+            "browserTarget": "management:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "apache:build:production"
+              "browserTarget": "management:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "apache:build"
+            "browserTarget": "management:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/apache/tsconfig.app.json",
-              "apps/apache/tsconfig.spec.json"
+              "apps/management/tsconfig.app.json",
+              "apps/management/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/apache/**"]
+            "exclude": ["**/node_modules/**", "!apps/management/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/apache/jest.config.js",
-            "tsConfig": "apps/apache/tsconfig.spec.json",
-            "setupFile": "apps/apache/src/test-setup.ts"
+            "jestConfig": "apps/management/jest.config.js",
+            "tsConfig": "apps/management/tsconfig.spec.json",
+            "setupFile": "apps/management/src/test-setup.ts"
           }
         }
       }
     },
-    "apache-e2e": {
-      "root": "apps/apache-e2e",
-      "sourceRoot": "apps/apache-e2e/src",
+    "management-e2e": {
+      "root": "apps/management-e2e",
+      "sourceRoot": "apps/management-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/apache-e2e/cypress.json",
-            "tsConfig": "apps/apache-e2e/tsconfig.e2e.json",
-            "devServerTarget": "apache:serve"
+            "cypressConfig": "apps/management-e2e/cypress.json",
+            "tsConfig": "apps/management-e2e/tsconfig.e2e.json",
+            "devServerTarget": "management:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "apache:serve:production"
+              "devServerTarget": "management:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/apache-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/apache-e2e/**"]
+            "tsConfig": "apps/management-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**", "!apps/management-e2e/**"]
           }
         }
       }

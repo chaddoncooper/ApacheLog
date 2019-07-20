@@ -8,11 +8,11 @@
     "nx.json": "*"
   },
   "projects": {
-    "apache-e2e": {
+    "management-e2e": {
       "tags": []
     },
-    "apache": {
-      "tags": []
+    "management": {
+      "tags": ["management"]
     }
   }
 }

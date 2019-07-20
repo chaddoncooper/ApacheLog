@@ -1,0 +1,18 @@
+{
+  "npmScope": "apache",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "apache-e2e": {
+      "tags": []
+    },
+    "apache": {
+      "tags": []
+    }
+  }
+}

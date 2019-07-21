@@ -26,7 +26,10 @@
               "apps/management/src/favicon.ico",
               "apps/management/src/assets"
             ],
-            "styles": ["apps/management/src/styles.scss"],
+            "styles": [
+              "apps/management/src/styles.scss",
+              "node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css"
+            ],
             "scripts": []
           },
           "configurations": {

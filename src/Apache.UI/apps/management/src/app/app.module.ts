@@ -8,6 +8,7 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { NZ_ICONS, NZ_I18N, en_GB } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(en);
 
 const antDesignIcons = AllIcons as {
@@ -19,7 +20,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, BlacklistModule],
+  imports: [BrowserModule, AppRoutingModule, BlacklistModule, HttpClientModule],
   providers: [
     { provide: NZ_I18N, useValue: en_GB },
     { provide: NZ_ICONS, useValue: icons }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BlacklistedResourceService } from '../../services/blacklisted-resource.service';
 
 @Component({
   selector: 'apache-blacklist',
@@ -6,28 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blacklist.component.scss']
 })
 export class BlacklistComponent implements OnInit {
-  listOfData = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    }
-  ];
+  blacklistedResources$ = this._blacklistedResourceService
+    .blacklistedResources$;
 
-  constructor() {}
+  constructor(
+    private readonly _blacklistedResourceService: BlacklistedResourceService
+  ) {}
 
   ngOnInit() {}
+
+  delete(id: number) {
+    this._blacklistedResourceService.deleteBlacklistedResource(id);
+  }
 }

@@ -18,7 +18,7 @@ export class BlacklistedResourceService {
 
   addBlacklistedResource(fullPath: string) {
     this._httpClient
-      .post(`${this._basePath}111`, { fullPath })
+      .post(`${this._basePath}`, { fullPath })
       .subscribe(
         _ => this.refresh$.next(undefined),
         error => console.log(error)

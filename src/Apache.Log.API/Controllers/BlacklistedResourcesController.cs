@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Apache.Log.Data.Entities;
 using Apache.Log.Repository;
+using System;
 
 namespace Apache.Log.API.Controllers
 {
@@ -87,6 +88,12 @@ namespace Apache.Log.API.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            var blacklistedResourcesWithMatchingPath = await _blacklistedResourceRepository.FindByAsync(x => x.FullPath == blacklistedResource.FullPath);
+            if (blacklistedResourcesWithMatchingPath.Count() > 0)
+            {
+                return BadRequest(new Exception("A blacklisted resource with the same path already exists"));
             }
 
             await _blacklistedResourceRepository.AddAsync(blacklistedResource);

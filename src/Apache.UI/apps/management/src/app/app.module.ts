@@ -1,14 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import en from '@angular/common/locales/en';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { BlacklistModule } from '@apache/blacklist';
+import { BrowserModule } from '@angular/platform-browser';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
-import { NZ_ICONS, NZ_I18N, en_GB } from 'ng-zorro-antd';
-import { registerLocaleData } from '@angular/common';
-import en from '@angular/common/locales/en';
-import { HttpClientModule } from '@angular/common/http';
+import { en_GB, NZ_I18N, NZ_ICONS } from 'ng-zorro-antd';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 registerLocaleData(en);
 
 const antDesignIcons = AllIcons as {
@@ -20,7 +19,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, BlacklistModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     { provide: NZ_I18N, useValue: en_GB },
     { provide: NZ_ICONS, useValue: icons }

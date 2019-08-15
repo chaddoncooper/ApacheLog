@@ -1,8 +1,8 @@
-import { BlacklistedResource } from '../models/blacklisted-resource.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { BlacklistedResource } from '../models/blacklisted-resource.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,16 +11,25 @@ export class BlacklistedResourceService {
 
   private readonly refresh$ = new BehaviorSubject(undefined);
   blacklistedResources$ = this.refresh$.pipe(
-    switchMap(() => this.httpClient.get<BlacklistedResource[]>(this._basePath))
+    switchMap(() => this._httpClient.get<BlacklistedResource[]>(this._basePath))
   );
 
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(private readonly _httpClient: HttpClient) {}
+
+  addBlacklistedResource(fullPath: string) {
+    this._httpClient
+      .post(`${this._basePath}111`, { fullPath })
+      .subscribe(
+        _ => this.refresh$.next(undefined),
+        error => console.log(error)
+      );
+  }
 
   deleteBlacklistedResource(id: number) {
-    this.httpClient
+    this._httpClient
       .delete(`${this._basePath}/${id}`)
       .subscribe(
-        result => this.refresh$.next(undefined),
+        _ => this.refresh$.next(undefined),
         error => console.log(error)
       );
   }

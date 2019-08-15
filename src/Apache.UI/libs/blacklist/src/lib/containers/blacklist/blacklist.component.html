@@ -22,3 +22,24 @@
     </tr>
   </tbody>
 </nz-table>
+<div>
+  <form
+    [formGroup]="addBlacklistedResourceForm"
+    class="create-blacklisted-url"
+    (ngSubmit)="add()"
+  >
+    <input
+      nz-input
+      placeholder="/path/to/blacklist"
+      formControlName="fullPath"
+    /><button
+      nz-button
+      nzType="primary"
+      nzShape="circle"
+      type="submit"
+      [disabled]="addBlacklistedResourceForm.pristine"
+    >
+      <i nz-icon nzType="plus"></i>
+    </button>
+  </form>
+</div>

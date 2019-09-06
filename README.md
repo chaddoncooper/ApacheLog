@@ -14,6 +14,11 @@ Reads data from Apache log files for the purpose of creating IP address blacklis
 dotnet ef database update --startup-project src/Apache.Log.API/ --context ApacheLogContext --project src/Apache.Log.Data/
 ```
 
+4. For development over SSL trust the dotnet developer certificate with:
+5. ```Shell
+6. dotnet dev-certs https --trust
+7. ```
+
 ### Adding Migrations
 
 Use the following command to add migrations, where <MigrationName> is the name of the migration:

@@ -23,9 +23,17 @@
             "aot": false,
             "assets": [
               "apps/apache-log-presentation/src/favicon.ico",
-              "apps/apache-log-presentation/src/assets"
+              "apps/apache-log-presentation/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
-            "styles": ["apps/apache-log-presentation/src/styles.scss"],
+            "styles": [
+              "apps/apache-log-presentation/src/theme.less",
+              "apps/apache-log-presentation/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {

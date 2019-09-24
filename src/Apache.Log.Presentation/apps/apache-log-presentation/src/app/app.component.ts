@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'apache-log-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'apache-log-presentation';
+  isCollapsed = false;
 }

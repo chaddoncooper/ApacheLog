@@ -13,6 +13,9 @@
     },
     "apache-log-presentation": {
       "tags": []
+    },
+    "layout": {
+      "tags": []
     }
   }
 }

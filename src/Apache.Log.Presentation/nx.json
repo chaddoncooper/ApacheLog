@@ -9,13 +9,13 @@
   },
   "projects": {
     "apache-log-presentation-e2e": {
-      "tags": []
+      "tags": ["apache-log"]
     },
     "apache-log-presentation": {
-      "tags": []
+      "tags": ["apache-log"]
     },
     "layout": {
-      "tags": []
+      "tags": ["apache-log", "layout"]
     }
   }
 }

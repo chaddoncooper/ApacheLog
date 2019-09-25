@@ -10,8 +10,11 @@
   >
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
-        <h1>Ant Design Of Angular</h1>
+        <img
+          src="https://www.apache.org/foundation/press/kit/feather.svg"
+          alt="logo"
+        />
+        <h1>Apache Logs</h1>
       </a>
     </div>
     <ul
@@ -23,20 +26,17 @@
       <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Monitor</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
+            <a routerLink="/overview">Overview</a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
+      <li nz-submenu nzClosed nzTitle="Resources" nzIcon="form">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
+            <a>Blacklist</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>Whitelist</a>
           </li>
         </ul>
       </li>

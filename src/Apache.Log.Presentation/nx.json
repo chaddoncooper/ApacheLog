@@ -16,6 +16,9 @@
     },
     "layout": {
       "tags": ["apache-log", "layout"]
+    },
+    "blacklist": {
+      "tags": ["apache-log", "blacklist"]
     }
   }
 }

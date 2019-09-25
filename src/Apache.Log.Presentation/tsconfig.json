@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@apache-log/layout": ["libs/layout/src/index.ts"]
+      "@apache-log/layout": ["libs/layout/src/index.ts"],
+      "@apache-log/blacklist": ["libs/blacklist/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

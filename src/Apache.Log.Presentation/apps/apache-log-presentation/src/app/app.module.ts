@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { LayoutModule } from '@apache-log/layout';
+import { environment } from '../environments/environment';
+import { CoreModule } from '@apache-log/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +22,8 @@ import { LayoutModule } from '@apache-log/layout';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    LayoutModule
+    LayoutModule,
+    CoreModule.forRoot(environment)
   ],
   providers: [{ provide: NZ_I18N, useValue: en_GB }],
   bootstrap: [AppComponent]

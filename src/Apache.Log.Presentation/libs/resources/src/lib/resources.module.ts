@@ -10,6 +10,9 @@ import {
 import { BlacklistComponent } from './containers/blacklist/blacklist.component';
 import { BlacklistedResourceService } from './services/blacklisted-resource.service';
 
+import { WhitelistComponent } from './containers/whitelist/whitelist.component';
+import { WhitelistedResourceService } from './services/whitelisted-resource.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -25,10 +28,14 @@ import { BlacklistedResourceService } from './services/blacklisted-resource.serv
       {
         path: 'blacklist',
         component: BlacklistComponent
+      },
+      {
+        path: 'whitelist',
+        component: WhitelistComponent
       }
     ])
   ],
-  declarations: [BlacklistComponent],
-  providers: [BlacklistedResourceService]
+  declarations: [BlacklistComponent, WhitelistComponent],
+  providers: [BlacklistedResourceService, WhitelistedResourceService]
 })
 export class ResourcesModule {}

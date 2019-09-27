@@ -120,5 +120,13 @@ namespace Apache.Log.API.Controllers
         {
             return _whitelistedResourceRepository.FindBy(x => x.Id == id).Any();
         }
+
+        // GET: api/WhitelistedResources/totalcount
+        [HttpGet]
+        [Route("totalcount")]
+        public async Task<IActionResult> GetTotalCount()
+        {
+            return Ok(await _whitelistedResourceRepository.TotalCountAsync());
+        }
     }
 }

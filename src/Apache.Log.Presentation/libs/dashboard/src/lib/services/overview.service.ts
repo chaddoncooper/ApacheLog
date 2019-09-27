@@ -5,14 +5,20 @@ import { APACHE_LOG_ENV } from '@apache-log/core';
   providedIn: 'root'
 })
 export class OverviewService {
-  private _basePath = `${this._apacheLogEnv.baseUrl}/api/BlacklistedResources`;
-
   constructor(
     @Inject(APACHE_LOG_ENV) private readonly _apacheLogEnv,
     private readonly _httpClient: HttpClient
   ) {}
 
   countBlacklistedResources() {
-    return this._httpClient.get(`${this._basePath}/totalcount`);
+    return this._httpClient.get(
+      `${this._apacheLogEnv.baseUrl}/api/BlacklistedResources/totalcount`
+    );
+  }
+
+  countWhitelistedResources() {
+    return this._httpClient.get(
+      `${this._apacheLogEnv.baseUrl}/api/WhitelistedResources/totalcount`
+    );
   }
 }

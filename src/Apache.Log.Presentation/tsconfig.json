@@ -19,7 +19,8 @@
       "@apache-log/layout": ["libs/layout/src/index.ts"],
       "@apache-log/resources": ["libs/resources/src/index.ts"],
       "@apache-log/dashboard": ["libs/dashboard/src/index.ts"],
-      "@apache-log/models": ["libs/models/src/index.ts"]
+      "@apache-log/models": ["libs/models/src/index.ts"],
+      "@apache-log/core": ["libs/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

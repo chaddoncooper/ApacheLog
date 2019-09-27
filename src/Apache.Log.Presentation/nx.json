@@ -19,6 +19,9 @@
     },
     "blacklist": {
       "tags": ["apache-log", "blacklist"]
+    },
+    "dashboard": {
+      "tags": ["apache-log", "dashboard"]
     }
   }
 }

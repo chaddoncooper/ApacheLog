@@ -22,6 +22,9 @@
     },
     "dashboard": {
       "tags": ["apache-log", "dashboard"]
+    },
+    "models": {
+      "tags": []
     }
   }
 }

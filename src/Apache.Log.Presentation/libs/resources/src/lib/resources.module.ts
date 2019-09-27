@@ -20,6 +20,10 @@ import { BlacklistedResourceService } from './services/blacklisted-resource.serv
     RouterModule.forChild([
       {
         path: '',
+        redirectTo: 'blacklist'
+      },
+      {
+        path: 'blacklist',
         component: BlacklistComponent
       }
     ])
@@ -27,4 +31,4 @@ import { BlacklistedResourceService } from './services/blacklisted-resource.serv
   declarations: [BlacklistComponent],
   providers: [BlacklistedResourceService]
 })
-export class BlacklistModule {}
+export class ResourcesModule {}

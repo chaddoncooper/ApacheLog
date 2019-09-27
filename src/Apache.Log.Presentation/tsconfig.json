@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@apache-log/layout": ["libs/layout/src/index.ts"],
-      "@apache-log/blacklist": ["libs/blacklist/src/index.ts"],
+      "@apache-log/resources": ["libs/resources/src/index.ts"],
       "@apache-log/dashboard": ["libs/dashboard/src/index.ts"]
     }
   },

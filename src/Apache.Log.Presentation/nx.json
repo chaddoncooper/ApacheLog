@@ -17,8 +17,8 @@
     "layout": {
       "tags": ["apache-log", "layout"]
     },
-    "blacklist": {
-      "tags": ["apache-log", "blacklist"]
+    "resources": {
+      "tags": ["apache-log", "resources"]
     },
     "dashboard": {
       "tags": ["apache-log", "dashboard"]

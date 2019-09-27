@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { BlacklistModule } from './blacklist.module';
+import { ResourcesModule } from './resources.module';
 
-describe('BlacklistModule', () => {
+describe('ResourcesModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BlacklistModule]
+      imports: [ResourcesModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(BlacklistModule).toBeDefined();
+    expect(ResourcesModule).toBeDefined();
   });
 });

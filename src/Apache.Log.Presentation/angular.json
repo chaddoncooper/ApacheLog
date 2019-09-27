@@ -169,28 +169,28 @@
         }
       }
     },
-    "blacklist": {
+    "resources": {
       "projectType": "library",
-      "root": "libs/blacklist",
-      "sourceRoot": "libs/blacklist/src",
+      "root": "libs/resources",
+      "sourceRoot": "libs/resources/src",
       "prefix": "apache-log",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/blacklist/tsconfig.lib.json",
-              "libs/blacklist/tsconfig.spec.json"
+              "libs/resources/tsconfig.lib.json",
+              "libs/resources/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/blacklist/**"]
+            "exclude": ["**/node_modules/**", "!libs/resources/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/blacklist/jest.config.js",
-            "tsConfig": "libs/blacklist/tsconfig.spec.json",
-            "setupFile": "libs/blacklist/src/test-setup.ts"
+            "jestConfig": "libs/resources/jest.config.js",
+            "tsConfig": "libs/resources/tsconfig.spec.json",
+            "setupFile": "libs/resources/src/test-setup.ts"
           }
         }
       },

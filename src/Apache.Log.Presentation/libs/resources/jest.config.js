@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'blacklist',
+  name: 'resources',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/libs/blacklist',
+  coverageDirectory: '../../coverage/libs/resources',
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js'

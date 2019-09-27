@@ -9,9 +9,9 @@ const routes: Routes = [
       import('@apache-log/dashboard').then(m => m.DashboardModule)
   },
   {
-    path: 'blacklist',
+    path: 'resources',
     loadChildren: () =>
-      import('@apache-log/blacklist').then(m => m.BlacklistModule)
+      import('@apache-log/resources').then(m => m.ResourcesModule)
   }
 ];
 

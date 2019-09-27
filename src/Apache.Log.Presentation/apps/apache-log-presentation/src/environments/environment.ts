@@ -6,7 +6,7 @@ import { Environment } from '@apache-log/models';
 
 export const environment: Environment = {
   production: false,
-  baseUrl: 'https://localhost:5001'
+  baseUrl: 'https://localhost:5001/'
 };
 
 /*

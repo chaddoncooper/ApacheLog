@@ -8,7 +8,7 @@ import { APACHE_LOG_ENV } from '@apache-log/core';
   providedIn: 'root'
 })
 export class WhitelistedResourceService {
-  private _basePath = `${this._apacheLogEnv.baseUrl}/api/WhitelistedResources`;
+  private _basePath = `${this._apacheLogEnv.baseUrl}api/WhitelistedResources`;
 
   private readonly refresh$ = new BehaviorSubject(undefined);
   whitelistedResources$ = this.refresh$.pipe(

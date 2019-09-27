@@ -12,13 +12,13 @@ export class OverviewService {
 
   countBlacklistedResources() {
     return this._httpClient.get(
-      `${this._apacheLogEnv.baseUrl}/api/BlacklistedResources/totalcount`
+      `${this._apacheLogEnv.baseUrl}api/BlacklistedResources/totalcount`
     );
   }
 
   countWhitelistedResources() {
     return this._httpClient.get(
-      `${this._apacheLogEnv.baseUrl}/api/WhitelistedResources/totalcount`
+      `${this._apacheLogEnv.baseUrl}api/WhitelistedResources/totalcount`
     );
   }
 }

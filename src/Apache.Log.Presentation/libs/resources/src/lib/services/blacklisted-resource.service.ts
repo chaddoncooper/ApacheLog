@@ -8,7 +8,7 @@ import { APACHE_LOG_ENV } from '@apache-log/core';
   providedIn: 'root'
 })
 export class BlacklistedResourceService {
-  private _basePath = `${this._apacheLogEnv.baseUrl}/api/BlacklistedResources`;
+  private _basePath = `${this._apacheLogEnv.baseUrl}api/BlacklistedResources`;
 
   private readonly refresh$ = new BehaviorSubject(undefined);
   blacklistedResources$ = this.refresh$.pipe(

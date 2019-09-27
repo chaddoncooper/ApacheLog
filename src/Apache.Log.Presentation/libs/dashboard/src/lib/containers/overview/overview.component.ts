@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OverviewService } from '../../services/overview.service';
 
 @Component({
   selector: 'apache-log-overview',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  constructor() {}
+  countBlacklistedResources = this._overviewService.countBlacklistedResources();
+
+  constructor(private readonly _overviewService: OverviewService) {}
 
   ngOnInit() {}
 }

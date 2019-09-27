@@ -33,4 +33,8 @@ export class BlacklistedResourceService {
         error => console.log(error)
       );
   }
+
+  countBlacklistedResources() {
+    this._httpClient.get(`${this._basePath}/totalcount`);
+  }
 }

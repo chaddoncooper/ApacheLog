@@ -1,20 +1,24 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { BlacklistedResource } from '../models/blacklisted-resource.model';
+import { APACHE_LOG_ENV } from '@apache-log/core';
 @Injectable({
   providedIn: 'root'
 })
 export class BlacklistedResourceService {
-  private _basePath = 'https://localhost:5001/api/BlacklistedResources';
+  private _basePath = `${this._apacheLogEnv.baseUrl}/api/BlacklistedResources`;
 
   private readonly refresh$ = new BehaviorSubject(undefined);
   blacklistedResources$ = this.refresh$.pipe(
     switchMap(() => this._httpClient.get<BlacklistedResource[]>(this._basePath))
   );
 
-  constructor(private readonly _httpClient: HttpClient) {}
+  constructor(
+    @Inject(APACHE_LOG_ENV) private readonly _apacheLogEnv,
+    private readonly _httpClient: HttpClient
+  ) {}
 
   addBlacklistedResource(fullPath: string) {
     this._httpClient

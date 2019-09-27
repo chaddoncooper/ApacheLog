@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-
+import { Injectable, Inject } from '@angular/core';
+import { APACHE_LOG_ENV } from '@apache-log/core';
 @Injectable({
   providedIn: 'root'
 })
 export class OverviewService {
-  private _basePath = 'https://localhost:5001/api/BlacklistedResources';
+  private _basePath = `${this._apacheLogEnv.baseUrl}/api/BlacklistedResources`;
 
-  constructor(private readonly _httpClient: HttpClient) {}
+  constructor(
+    @Inject(APACHE_LOG_ENV) private readonly _apacheLogEnv,
+    private readonly _httpClient: HttpClient
+  ) {}
 
   countBlacklistedResources() {
     return this._httpClient.get(`${this._basePath}/totalcount`);

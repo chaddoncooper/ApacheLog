@@ -1,0 +1,20 @@
+<h1>Overview</h1>
+
+<div class="statistics">
+  <nz-card>
+    <nz-statistic
+      [nzValue]="countBlacklistedResources | async"
+      [nzTitle]="'Blacklisted Resources'"
+      [nzValueStyle]="{ color: '#3F8600' }"
+    >
+    </nz-statistic>
+  </nz-card>
+  <nz-card>
+    <nz-statistic
+      [nzValue]="0"
+      [nzTitle]="'Whitelisted Resources'"
+      [nzValueStyle]="{ color: '#3F8600' }"
+    >
+    </nz-statistic>
+  </nz-card>
+</div>

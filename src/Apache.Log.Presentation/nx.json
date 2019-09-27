@@ -1,0 +1,33 @@
+{
+  "npmScope": "apache-log",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "apache-log-presentation-e2e": {
+      "tags": ["apache-log"]
+    },
+    "apache-log-presentation": {
+      "tags": ["apache-log"]
+    },
+    "layout": {
+      "tags": ["apache-log", "layout"]
+    },
+    "resources": {
+      "tags": ["apache-log", "resources"]
+    },
+    "dashboard": {
+      "tags": ["apache-log", "dashboard"]
+    },
+    "models": {
+      "tags": []
+    },
+    "core": {
+      "tags": []
+    }
+  }
+}

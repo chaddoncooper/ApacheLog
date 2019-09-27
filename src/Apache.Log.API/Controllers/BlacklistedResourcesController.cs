@@ -120,5 +120,13 @@ namespace Apache.Log.API.Controllers
         {
             return _blacklistedResourceRepository.FindBy(x => x.Id == id).Any();
         }
+
+        // GET: api/BlacklistedResources/totalcount
+        [HttpGet]
+        [Route("totalcount")]
+        public async Task<IActionResult> GetTotalCount()
+        {
+            return Ok(await _blacklistedResourceRepository.TotalCountAsync());
+        }
     }
 }

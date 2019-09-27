@@ -1,0 +1,47 @@
+<div><h1>Blacklist</h1></div>
+<div>
+  <form
+    [formGroup]="addBlacklistedResourceForm"
+    class="create-blacklisted-url"
+    (ngSubmit)="add()"
+  >
+    <input
+      nz-input
+      placeholder="/path/to/blacklist"
+      formControlName="fullPath"
+    /><button
+      nz-button
+      nzType="primary"
+      nzShape="circle"
+      type="submit"
+      [disabled]="addBlacklistedResourceForm.pristine"
+    >
+      <i nz-icon nzType="plus"></i>
+    </button>
+  </form>
+</div>
+
+<nz-table #basicTable [nzData]="blacklistedResources$ | async">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Full Path</th>
+      <!-- <th>Address</th>
+      <th>Action</th> -->
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.id }}</td>
+      <td>{{ data.fullPath }}</td>
+      <!-- <td>{{ data.address }}</td>
+      <td>
+        <a>Action 一 {{ data.name }}</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a>Delete</a>
+      </td> -->
+      <td><a (click)="delete(data.id)">Delete</a></td>
+    </tr>
+  </tbody>
+</nz-table>

@@ -8,6 +8,7 @@ import { OverviewService } from '../../services/overview.service';
 })
 export class OverviewComponent implements OnInit {
   countBlacklistedResources = this._overviewService.countBlacklistedResources();
+  countWhitelistedResources = this._overviewService.countWhitelistedResources();
 
   constructor(private readonly _overviewService: OverviewService) {}
 

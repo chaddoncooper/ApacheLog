@@ -11,7 +11,7 @@
   </nz-card>
   <nz-card>
     <nz-statistic
-      [nzValue]="0"
+      [nzValue]="countWhitelistedResources | async"
       [nzTitle]="'Whitelisted Resources'"
       [nzValueStyle]="{ color: '#3F8600' }"
     >

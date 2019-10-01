@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'resources',
     loadChildren: () =>
       import('@apache-log/resources').then(m => m.ResourcesModule)
+  },
+  {
+    path: 'virtual-hosts',
+    loadChildren: () =>
+      import('@apache-log/virtual-hosts').then(m => m.VirtualHostsModule)
   }
 ];
 

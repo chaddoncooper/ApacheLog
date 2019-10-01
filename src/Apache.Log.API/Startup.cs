@@ -35,6 +35,7 @@ namespace Apache.Log.API
             services.AddTransient<IBlacklist, Blacklist>();
             services.AddTransient<IBlacklistedResourceRepository, BlacklistedResourceRepository>();
             services.AddTransient<IWhitelistedResourceRepository, WhitelistedResourceRepository>();
+            services.AddTransient<IVirtualHostRepository, VirtualHostRepository>();
 
             services.AddDbContext<ApacheLogContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ApacheLogContext")));

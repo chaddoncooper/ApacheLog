@@ -8,46 +8,7 @@
     [nzCollapsedWidth]="0"
     [nzTrigger]="null"
   >
-    <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <img
-          src="https://www.apache.org/foundation/press/kit/feather.svg"
-          alt="logo"
-        />
-        <h1>Apache Logs</h1>
-      </a>
-    </div>
-    <ul
-      nz-menu
-      nzTheme="dark"
-      nzMode="inline"
-      [nzInlineCollapsed]="isCollapsed"
-    >
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/dashboard/overview">Overview</a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzClosed nzTitle="Resources" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/resources/blacklist">Blacklist</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/resources/whitelist">Whitelist</a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzOpen nzTitle="Virtual Hosts" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/virtual-hosts/manage">Manage</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <apache-log-sidebar></apache-log-sidebar>
   </nz-sider>
   <nz-layout>
     <nz-header>

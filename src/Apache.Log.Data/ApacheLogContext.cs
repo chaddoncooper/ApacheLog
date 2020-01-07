@@ -13,7 +13,7 @@ namespace Apache.Log.Data
 
         public virtual DbSet<WhitelistedResource> WhitelistedResources { get; set; }
         public virtual DbSet<BlacklistedResource> BlacklistedResources { get; set; }
-        public virtual DbSet<VirtualHost> VirutalHosts { get; set; }
+        public virtual DbSet<VirtualHost> VirtualHosts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +26,7 @@ namespace Apache.Log.Data
         {
             new BlacklistedResourceConfiguration(modelBuilder.Entity<BlacklistedResource>());
             new WhitelistedResourceConfiguration(modelBuilder.Entity<WhitelistedResource>());
+            new VirtualHostConfiguration(modelBuilder.Entity<VirtualHost>());
         }
 
         private void Seeds(ModelBuilder modelBuilder)

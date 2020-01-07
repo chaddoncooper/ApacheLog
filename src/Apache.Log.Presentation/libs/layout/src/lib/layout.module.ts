@@ -4,10 +4,11 @@ import { MainLayoutComponent } from './containers/main-layout/main-layout.compon
 import { IconsProviderModule } from './icons-provider.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { RouterModule } from '@angular/router';
+import { SidebarComponent } from './containers/sidebar/sidebar.component';
 
 @NgModule({
   imports: [CommonModule, IconsProviderModule, NgZorroAntdModule, RouterModule],
-  declarations: [MainLayoutComponent],
+  declarations: [MainLayoutComponent, SidebarComponent],
   exports: [MainLayoutComponent]
 })
 export class LayoutModule {}

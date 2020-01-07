@@ -1,6 +1,6 @@
-﻿using Apache.Log.Data.Entities;
+﻿using Apache.Log.Data;
+using Apache.Log.Data.Entities;
 using Core.Repository;
-using Microsoft.EntityFrameworkCore;
 
 namespace Apache.Log.Repository
 {
@@ -8,7 +8,7 @@ namespace Apache.Log.Repository
 
     public class VirtualHostRepository : EntityBaseRepository<VirtualHost>, IVirtualHostRepository
     {
-        public VirtualHostRepository(DbContext context) : base(context)
+        public VirtualHostRepository(ApacheLogContext context) : base(context)
         {
         }
     }

@@ -292,6 +292,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "virtual-hosts": {
+      "projectType": "library",
+      "root": "libs/virtual-hosts",
+      "sourceRoot": "libs/virtual-hosts/src",
+      "prefix": "apache-log",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/virtual-hosts/tsconfig.lib.json",
+              "libs/virtual-hosts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/virtual-hosts/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/virtual-hosts/jest.config.js",
+            "tsConfig": "libs/virtual-hosts/tsconfig.spec.json",
+            "setupFile": "libs/virtual-hosts/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

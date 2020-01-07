@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Apache.Log.Data.Configurations
 {
-    class BlacklistedResourceConfiguration
+    class VirtualHostConfiguration
     {
-        private EntityTypeBuilder<BlacklistedResource> entityTypeBuilder;
+        private EntityTypeBuilder<VirtualHost> entityTypeBuilder;
 
-        public BlacklistedResourceConfiguration(EntityTypeBuilder<BlacklistedResource> entityTypeBuilder)
+        public VirtualHostConfiguration(EntityTypeBuilder<VirtualHost> entityTypeBuilder)
         {
             this.entityTypeBuilder = entityTypeBuilder;
         }

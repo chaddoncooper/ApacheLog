@@ -4,7 +4,7 @@
 
 Reads data from Apache log files for the purpose of creating IP address blacklists and whitelists.
 
-## Developer Initial Set-up Instructions
+## Initial Development Set-up Instructions
 
 1. Use the UserSecretsId in Apache.Log.API.csproj to [create a user secrets file](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets)
 2. Create a database and add a connection string to ConnectionStrings:ApacheLogContext in the user secrets file

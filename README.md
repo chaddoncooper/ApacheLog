@@ -12,7 +12,7 @@ Reads data from Apache log files for the purpose of creating IP address blacklis
 4. Apply migrations from the console using: `dotnet ef database update --startup-project src/Apache.Log.API/ --context ApacheLogContext --project src/Apache.Log.Data/`
 5. Run NPM Install : `npm install --prefix ./src/Apache.Log.Presentation/ ./src/Apache.Log.Presentation/`
 
-## Developer Instructions for 
+## Developer Instructions 
 
 1. Run the Dotnet core API in watch mode with: `cd ./src/Apache.LogAPI && dotnet watch run`
 2. Run the Angular application with: `cd ./src/Apache.Log.Presentation/ && ng serve`

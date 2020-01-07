@@ -1,1 +1,21 @@
 <h1>Manage</h1>
+<div>
+  <nz-table #basicTable [nzData]="virtualHosts$ | async">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Host name</th>
+        <th>Log file base directory</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.id }}</td>
+        <td>{{ data.hostName }}</td>
+        <td>{{ data.logFileBaseDirectory }}</td>
+        <td><a (click)="delete(data.id)">Delete</a></td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

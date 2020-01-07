@@ -11,23 +11,23 @@ namespace Apache.Log.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VirtualHostController : ControllerBase
+    public class VirtualHostsController : ControllerBase
     {
         private readonly IVirtualHostRepository _virtualHostRepository;
 
-        public VirtualHostController(IVirtualHostRepository virtualHostRepository)
+        public VirtualHostsController(IVirtualHostRepository virtualHostRepository)
         {
             _virtualHostRepository = virtualHostRepository;
         }
 
-        // GET: api/VirtualHost
+        // GET: api/VirtualHosts
         [HttpGet]
         public IEnumerable<VirtualHost> GetVirtualHosts()
         {
             return _virtualHostRepository.GetAll();
         }
 
-        // GET: api/VirtualHost/5
+        // GET: api/VirtualHosts/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVirtualHost([FromRoute] int id)
         {
@@ -46,7 +46,7 @@ namespace Apache.Log.API.Controllers
             return Ok(virtualHost);
         }
 
-        // PUT: api/VirtualHost/5
+        // PUT: api/VirtualHosts/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVirtualHost([FromRoute] int id, [FromBody] VirtualHost virtualHost)
         {
@@ -81,7 +81,7 @@ namespace Apache.Log.API.Controllers
             return NoContent();
         }
 
-        // POST: api/VirtualHost
+        // POST: api/VirtualHosts
         [HttpPost]
         public async Task<IActionResult> PostBlacklistedResource([FromBody] VirtualHost virtualHost)
         {

@@ -1,7 +1,17 @@
 {
   "extends": "../../tslint.json",
   "rules": {
-    "directive-selector": [true, "attribute", "apacheLog", "camelCase"],
-    "component-selector": [true, "element", "apache-log", "kebab-case"]
+    "directive-selector": [
+      true,
+      "attribute",
+      "apacheLog",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "apache-log",
+      "kebab-case"
+    ]
   }
 }

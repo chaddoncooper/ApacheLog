@@ -7,7 +7,7 @@ import { APACHE_LOG_ENV } from './tokens/apache-log-environment.token';
   imports: [CommonModule]
 })
 export class CoreModule {
-  static forRoot(environment: Environment): ModuleWithProviders {
+  static forRoot(environment: Environment): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
       providers: [{ provide: APACHE_LOG_ENV, useValue: environment }]
